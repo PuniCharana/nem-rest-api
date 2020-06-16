@@ -1,0 +1,63 @@
+{
+    "env": {
+      "browser": true,
+      "commonjs": true,
+      "es6": true,
+      "node": true
+    },
+    "extends": "eslint:recommended",
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+        "ecmaVersion": 11,
+        "sourceType": "module"
+    },
+    "rules": {
+        "indent": [
+            "error",
+            2,
+            {
+              "SwitchCase": 1
+            }
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "no-unused-vars": ["error", {
+          "argsIgnorePattern": "^_"
+        }],
+        "no-extra-semi": "error",
+        "no-unreachable": "error",
+        "require-await": "warn",
+        "default-case": "warn",
+        "no-magic-numbers": "error",
+        "camelcase": "error",
+        "capitalized-comments": "warn",
+        "max-depth": ["error", 4],
+        "no-var": "error",
+        "prefer-const": "error",
+        "prefer-destructuring": ["error", {
+          "array": true,
+          "object": true
+        }, {
+          "enforceForRenamedProperties": false
+        }],
+        "brace-style": [ 
+          "error",
+          "1tbs", { 
+            "allowSingleLine": true
+          }
+        ]
+    }
+}
