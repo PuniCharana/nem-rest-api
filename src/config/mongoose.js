@@ -21,7 +21,7 @@ exports.connect = () => {
       /**
       * DeprecationWarning: collection.ensureIndex is deprecated.
       * Use createIndexes instead.
-      * /
+      */
       useCreateIndex: true,
       /**
        * DeprecationWarning: current URL string parser is deprecated,

@@ -41,7 +41,13 @@ const sampleListSchema = Joi.object({
   ...basePagination,
 });
 
+const sampleUpdateSchema = Joi.object({
+  name: Joi.string(),
+  count: Joi.number().min(VALIDATION.MIN).max(VALIDATION.MAX),
+});
+
 module.exports = {
   sampleSchema,
   sampleListSchema,
+  sampleUpdateSchema,
 };

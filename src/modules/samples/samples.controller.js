@@ -3,7 +3,8 @@ const {
 } = require('../../core/helper');
 const Sample = require('./samples.model');
 const {
-  sampleListSchema
+  sampleListSchema,
+  sampleUpdateSchema,
 } = require('./samples.schema');
 const {
   STATUS_CODE
@@ -36,7 +37,7 @@ exports.getSample = async (req, res, next) => {
     const projection = '_id name count created updated';
     const sample = await Sample.findById(sampleId, projection);
     if (!sample) throw new ItemNotFound(`Cannot find sample with id ${sampleId}`);
-    return res.json({
+    return res.status(STATUS_CODE.OK).json({
       data: sample,
     });
   } catch (error) {
@@ -69,6 +70,26 @@ exports.addSample = async (req, res, next) => {
     // Save new artist & return saved artist
     const sample = await newSample.save();
     return res.status(STATUS_CODE.CREATED).json({
+      data: sample,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+/**
+ * PATCH: Update sample
+ */
+exports.updateSample = async (req, res, next) => {
+  try {
+    const {
+      sample_id: sampleId
+    } = req.params;
+    const update = await sampleUpdateSchema.validateAsync(req.body);
+    const sample = await Sample.findByIdAndUpdate(sampleId, update, {
+      new: true // Return modified document
+    });
+    return res.status(STATUS_CODE.ACCEPTED).json({
       data: sample,
     });
   } catch (error) {
